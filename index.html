@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jardín de Flores Amarillas con Atardecer Rosa</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #FF9FF3, #FFC0CB, #FFB6C1);
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .garden-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      animation: sunset 20s infinite alternate;
+    }
+    
+    .ground {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 30%;
+      background: linear-gradient(to bottom, #228B22, #006400);
+      border-top: 5px solid #006400;
+    }
+    
+    .flower {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      animation: grow 2s forwards, sway 3s infinite ease-in-out alternate;
+      filter: drop-shadow(0 0 5px rgba(255, 165, 0, 0.5));
+    }
+    
+    .flower-center {
+      width: 30%;
+      height: 30%;
+      background: radial-gradient(circle, #FFA500 0%, #FFD700 100%);
+      border-radius: 50%;
+      position: absolute;
+      top: 35%;
+      left: 35%;
+      z-index: 2;
+    }
+    
+    .petal {
+      position: absolute;
+      width: 50%;
+      height: 60%;
+      background: linear-gradient(to bottom right, #FFD700, #FFA500);
+      border-radius: 50% 50% 0 50%;
+      top: 20%;
+      left: 25%;
+      transform-origin: bottom center;
+    }
+    
+    .stem {
+      width: 2px;
+      height: 30px;
+      background-color: #006400;
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .sun {
+      position: absolute;
+      bottom: 45%;
+      right: 10%;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, #FFD700, #FF6347);
+      border-radius: 50%;
+      box-shadow: 0 0 30px #FF6347;
+      animation: sunsetMove 20s infinite alternate;
+    }
+    
+    .cloud {
+      position: absolute;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+      border-radius: 50%;
+      opacity: 0.9;
+      filter: blur(4px); /* Añade suavidad a los bordes */
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2); /* Sombra para más realismo */
+      animation: float 40s infinite linear;
+    }
+
+    /* Variación de las formas de las nubes */
+    .cloud::before,
+    .cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .cloud::before {
+      width: 50%;
+      height: 50%;
+      top: -20%;
+      left: 10%;
+      filter: blur(6px);
+    }
+
+    .cloud::after {
+      width: 70%;
+      height: 70%;
+      top: 20%;
+      left: 20%;
+      filter: blur(8px);
+    }
+    
+    button {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #FF69B4;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 12px;
+      z-index: 10;
+    }
+    
+    @keyframes grow {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes sway {
+      0% {
+        transform: rotate(-5deg);
+      }
+      100% {
+        transform: rotate(5deg);
+      }
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100vw);
+      }
+    }
+    
+    @keyframes sunset {
+      0% {
+        filter: brightness(1) saturate(1);
+      }
+      100% {
+        filter: brightness(0.9) saturate(1.1);
+      }
+    }
+    
+    @keyframes sunsetMove {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-50px);
+      }
+    }
+
+    .moving-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: #FF69B4;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 1s forwards, moveText 20s linear infinite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes moveText {
+  0% {
+    transform: translate(-50%, -50%) translateX(100%);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(-100%);
+  }
+}
+
+  </style>
+</head>
+<body>
+    <div class="garden-container" id="gardenContainer">
+        <div class="ground"></div>
+        <div class="sun"></div>
+        <div id="movingText" class="moving-text">Flores amarillas, para la mujer de mi vida. Sofía mayor, te amo, me muero por ti<3. Con mucho amor, Andrés Fábregas. (tu futuro esposo yalosoi)</div>
+      </div>
+      <button id="growButton">florecitas amarillas para mí reina aqui!</button>
+      
+      <!-- Audio player oculto -->
+      <audio id="song" src="ella sabía que él sabía que algún día pasaría.mp3" type="audio/mp3"></audio>
+      
+  
+  <script>
+    const gardenContainer = document.getElementById('gardenContainer');
+    const growButton = document.getElementById('growButton');
+    const song = document.getElementById('song');
+    
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      
+      const stem = document.createElement('div');
+      stem.classList.add('stem');
+      flower.appendChild(stem);
+      
+      const center = document.createElement('div');
+      center.classList.add('flower-center');
+      flower.appendChild(center);
+      
+      for (let i = 0; i < 8; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.style.transform = `rotate(${i * 45}deg)`;
+        petal.style.filter = `hue-rotate(${Math.random() * 20 - 10}deg)`;
+        flower.appendChild(petal);
+      }
+      
+      const x = Math.random() * 100;
+      const y = Math.random() * 30 + 50;
+      flower.style.left = `${x}%`;
+      flower.style.bottom = `${y}px`;
+      
+      gardenContainer.appendChild(flower);
+    }
+    
+    function createCloud() {
+      const cloud = document.createElement('div');
+      cloud.classList.add('cloud');
+      cloud.style.width = `${Math.random() * 150 + 100}px`;
+      cloud.style.height = `${Math.random() * 60 + 30}px`;
+      cloud.style.top = `${Math.random() * 30}%`;
+      cloud.style.animationDuration = `${Math.random() * 60 + 60}s`;
+      gardenContainer.appendChild(cloud);
+    }
+    
+    const movingText = document.getElementById('movingText');
+
+growButton.addEventListener('click', () => {
+  gardenContainer.innerHTML = '<div class="ground"></div><div class="sun"></div><div id="movingText" class="moving-text">Flores amarillas, para la mujer de mi vida. Sofía mayor, te amo, me muero por ti<3. Con mucho amor, Andrés Fábregas. (tu futuro esposo yalosoi)</div>';
+  for (let i = 0; i < 100; i++) {
+    setTimeout(createFlower, i * 80);
+  }
+  for (let i = 0; i < 5; i++) {
+    setTimeout(createCloud, i * 1000);
+  }
+  // Reproduce la canción al hacer clic
+  song.play();
+});
+
+
+    
+  </script>
+</body>
+</html>
